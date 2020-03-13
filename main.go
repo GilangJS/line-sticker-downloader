@@ -13,6 +13,7 @@ import (
 	"sort"
 
 	"github.com/azaky/line-sticker-downloader/util"
+	"github.com/joho/godotenv"
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
@@ -264,6 +265,9 @@ func (bot *Bot) processSticker(id string) error {
 }
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	channelToken := os.Getenv("CHANNEL_TOKEN")
 	if channelToken == "" {
 		log.Fatalf("CHANNEL_TOKEN env is required")
